@@ -1,7 +1,7 @@
 $(document).ready(function()
 {
  	//initially the cart section is hidden
-	$("#shoppingCart").hide();
+//	$("#shoppingCart").hide();
  
 });
 
