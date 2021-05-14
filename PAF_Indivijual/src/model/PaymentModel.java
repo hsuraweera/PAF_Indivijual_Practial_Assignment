@@ -6,6 +6,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
+
+
+//IMPORTANT : I commented all the unnecessary command lines that I used for previous group project submission.
+
+
 public class PaymentModel {
 	
 	//This method will be connect the payment service database to the project
@@ -204,9 +209,10 @@ public class PaymentModel {
 		   
 		        	 output += "<tr>" + 
 		        			"  	<td>"+productNameInCart+"</td>" +
-		        			"	<td><input style='width:50px;' type='number' value="+quantityInCart+">&nbsp &nbsp<button class=\"btn btn-dark\" type=\"button\">Update</button></td>" + 
+		        			"	<td><input style='width:50px;' type='number' value="+quantityInCart+">&nbsp &nbsp"
+		        					+ "<button class=\"btn btn-dark\" type=\"button\" name='updateCartQuantity' id='updateCartQuantity'  data-cartID='"+cartId+"' >Update</button></td>" + 
 		        			"  	<td>"+productPriceInCart+".00$</td>" +
-		        			"<td> <button class=\"btn btn-dark\" type=\"button\" id='removeFromCart' name='removeFromCart' data-cartId="+cartId+">Remove</button> </td>" + 
+		        			"<td> <button class=\"btn btn-dark\" type=\"button\" id='removeFromCart' name='removeFromCart' data-cartID='"+cartId+"'>Remove</button> </td>" + 
 		        			"   </tr>"; 
 		        	
 		        	
@@ -266,7 +272,7 @@ public class PaymentModel {
 		Connection conn = connect();
 		
 		if (conn == null){
-			output += "Status : Error while connecting to the database"; 
+		//	output += "Status : Error while connecting to the database"; 
 		}else {
 			String updateCartSql = "UPDATE cart SET quantity='"+quantity+"' WHERE cartId ='"+cartId+"' ";
 			try {
@@ -275,15 +281,15 @@ public class PaymentModel {
 				int status = stmt.executeUpdate(updateCartSql);
 				
 				if(status>0) {
-					output += "Status : Successfully updated the cart";	
+				//	output += "Status : Successfully updated the cart";	
 				}else {
-					output += "Status : Error while updating";
+				//	output += "Status : Error while updating";
 				}
 				
 				
 
 				} catch (SQLException e) {
-					output += "Error while updating";
+				//	output += "Error while updating";
 					e.printStackTrace();
 				}	
 		}

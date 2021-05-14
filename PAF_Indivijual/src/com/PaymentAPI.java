@@ -35,7 +35,7 @@ public class PaymentAPI extends HttpServlet {
 		
 	}
 
-	
+	//Insert new item to the cart table
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String result = paymentModel.addToCart(
@@ -70,27 +70,26 @@ public class PaymentAPI extends HttpServlet {
 		return map;
 	}
 
+	
+	//update the quantity of the cart
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		Map<String, String> param = getParasMap(request);
 
-//		String result = customerObj.updateCustomer(param.get("hidcustomerIDSave").toString(),
-//				param.get("customerName").toString().toString().replace("+", " "),
-//				param.get("customerEmail").toString().toString().replace("%40", "@"),
-//				param.get("customerType").toString().toString().replace("+", " "),
-//				param.get("customerContact").toString());
-//
-	//	response.getWriter().write(result);
+		String result = paymentModel.updateCart(Integer.parseInt(param.get("cartId").toString()), param.get("quantity").toString());
+
+		response.getWriter().write(result);
 	}
 
 	
+	//delete item from the cart
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		Map<String, String> param = getParasMap(request);
 
-		String result = paymentModel.deleteFromCart(param.get("cartId").toString());
+		String result = paymentModel.deleteFromCart(param.get("cartID").toString());
 
 		response.getWriter().write(result);
 	}
