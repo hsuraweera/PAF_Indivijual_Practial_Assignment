@@ -1,3 +1,4 @@
+<%@page import="model.PaymentModel"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -22,25 +23,75 @@
             </div>
         </div>
     </nav>
-    <h1 class="text-center" style="padding-top: 20px;">Find out new items</h1>
+    <h1 class="text-center" style="padding-top: 20px;">Find the best one!</h1>
     <div class="container" style="padding-top: 20px;">
         <div class="row">
-            <div class="col-md-4"><img class="img-fluid" src="assets/img/dfd50a462a79a8b9bea5a6ad288cb722.jpg" style="height: 200px;width: 320px;">
-                <h5 style="padding-top: 15px;">Flower selling website made with PHP</h5>
-                <p>This Free Flower Online Store Template is ideal solution for online flower store e-commerce website.<br></p><button class="btn btn-dark" type="button">Add to Cart</button>
-            </div>
-            <div class="col-md-4"><img class="img-fluid" src="assets/img/screenshot-8-website-marketing.png" style="height: 200px;width: 320px;">
-                <h5 style="padding-top: 15px;">FAQ knowledgebase website using java/jsp</h5>
-                <p>It's perfect for providing a support resource for your customers and is super easy to manage.</p><button class="btn btn-dark" type="button">Add to Cart<br></button>
-            </div>
-            <div class="col-md-4"><img class="img-fluid" src="assets/img/unnamed.png" style="height: 200px;width: 320px;">
-                <h5 style="padding-top: 15px;">BMI calculator source code</h5>
-                <p>This is an android application developed using Java and Android studio to calculate your Body Mass Index.</p><button class="btn btn-dark" type="button">Add to Cart<br></button>
-            </div>
+            
+            
+            <%
+            	//fetch all products from the cart 
+            	PaymentModel paymentModel =  new PaymentModel();
+            	out.print(paymentModel.fetchAllProducts());
+            
+            %>
+            
         </div>
     </div>
     <br><br>
     
+    <!-- start cart -->
+    <div id="shoppingCart"> 
+    <h1 class="text-center" style="padding-top: 20px;">Shopping Cart</h1>
+    <div class="container" style="padding-top: 20px;">
+        <div class="row">
+            <div class="col-md-4 col-lg-1"></div>
+            <div class="col-md-4 col-lg-10">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Item Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+							<%
+								//load cart items to the page
+								out.print(paymentModel.loadCartItems("U001"));
+							%>
+							
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-1"></div>
+        </div>
+        <div></div>
+    </div>
+    <div class="container" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 text-center">
+                
+				<% 
+					//count total cost for cart item
+					out.print(paymentModel.countTotalCart("U001")); 
+				
+				%>
+
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+    </div>
+    <!-- end cart -->
+    
+    
+    
+    <br><br><br><br><br><br>
     <div class="footer-2" style="width: 100%;">
         <div class="container">
             <div class="row">
